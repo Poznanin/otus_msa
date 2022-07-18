@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'arch.homework'
-version = '0.0.1-SNAPSHOT'
+version = ''
 sourceCompatibility = '18'
 
 configurations {
