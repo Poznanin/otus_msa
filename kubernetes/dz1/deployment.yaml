@@ -19,12 +19,14 @@ spec:
             - name: web
               containerPort: 8000
           readinessProbe:
-            tcpSocket:
+            httpGet:
               port: 8000
+              path: /health
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
-            tcpSocket:
+            httpGet:
               port: 8000
+              path: /health
             initialDelaySeconds: 15
             periodSeconds: 20
