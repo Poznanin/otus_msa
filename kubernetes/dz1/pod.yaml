@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+  labels:
+    app: web-app
+spec:
+  containers:
+  - name: web-app
+    image: poznaninlp/otus_homework:1.0
+    ports:
+    - containerPort: 8000
