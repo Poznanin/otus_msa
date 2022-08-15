@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: web-app
-        image: poznaninlp/otus_homework:1.0
+        image: poznaninlp/otus_homework:1.1
         ports:
         - containerPort: 8000

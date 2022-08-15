@@ -19,4 +19,12 @@ public class HealthController {
         return ResponseEntity.ok(new HealthResult());
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ApiOperation(value = "Возвращает статус от корня",
+            notes = "В результате возвращается  {\"status\": \"Root-OK\"} "
+    )
+    @ResponseStatus(OK)
+    public ResponseEntity<HealthResult> getStatusFromRoot(){
+        return ResponseEntity.ok(new HealthResult("Root-OK"));
+    }
 }
