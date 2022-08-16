@@ -1,0 +1,408 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "f71fb1cc-6969-4890-8cbb-07c985ea228d",
+      "exporter_id": "22832992"
+    },
+    "item": [
+      {
+        "id": "2b8f8498-a516-4481-9797-8e72d1ca02ce",
+        "name": "arch.homework/health",
+        "request": {
+          "url": {
+            "path": [
+              "health",
+              ""
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": []
+      },
+      {
+        "id": "4933d48f-d683-4778-bcf3-63d933d7240a",
+        "name": "arch.homework/otusapp/poznanin/health",
+        "request": {
+          "url": {
+            "path": [
+              "otusapp",
+              "poznanin",
+              "health"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": []
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "f71fb1cc-6969-4890-8cbb-07c985ea228d",
+      "name": "dz1",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "id": "d7088e2c-ee99-48c1-8768-aa569bb6999e",
+    "values": []
+  },
+  "globals": {
+    "id": "1ab60d00-51df-48a7-8135-3f46a41ddddc",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 44.5,
+      "responseMin": 14,
+      "responseMax": 75,
+      "responseSd": 30.5,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1660644007190,
+      "completed": 1660644007457
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 2,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "46df494c-9df2-4969-802b-ad5652a853c6",
+          "httpRequestId": "09d8b6cf-4862-4e8a-a70e-7e3157d1e13f"
+        },
+        "item": {
+          "id": "2b8f8498-a516-4481-9797-8e72d1ca02ce",
+          "name": "arch.homework/health",
+          "request": {
+            "url": {
+              "path": [
+                "health",
+                ""
+              ],
+              "host": [
+                "arch",
+                "homework"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "path": [
+              "health",
+              ""
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.29.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "a29eb379-176c-402f-bc0d-333980f11861",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "arch.homework",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "a340f60a-1727-48da-9e1e-c88a44d000e5",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 16 Aug 2022 10:00:07 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              79,
+              75,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 75,
+          "responseSize": 15
+        },
+        "id": "2b8f8498-a516-4481-9797-8e72d1ca02ce"
+      },
+      {
+        "cursor": {
+          "ref": "be9a465b-7607-419b-88eb-784bff9e0d25",
+          "length": 2,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "6c9377a2-fb22-4709-81e4-0ad683f82fa2"
+        },
+        "item": {
+          "id": "4933d48f-d683-4778-bcf3-63d933d7240a",
+          "name": "arch.homework/otusapp/poznanin/health",
+          "request": {
+            "url": {
+              "path": [
+                "otusapp",
+                "poznanin",
+                "health"
+              ],
+              "host": [
+                "arch",
+                "homework"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "path": [
+              "otusapp",
+              "poznanin",
+              "health"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.29.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "e704c7cd-e995-4cfe-b356-456628ea02c1",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "arch.homework",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "504add1e-237d-4dbe-ab7f-2191dcc4bc01",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 16 Aug 2022 10:00:07 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              79,
+              75,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 14,
+          "responseSize": 15
+        },
+        "id": "4933d48f-d683-4778-bcf3-63d933d7240a"
+      }
+    ],
+    "transfers": {
+      "responseTotal": 30
+    },
+    "failures": [],
+    "error": null
+  }
+}
