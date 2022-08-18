@@ -1,9 +1,11 @@
 package arch.homework.webapp.controller;
 
 import arch.homework.webapp.controller.dto.HealthResult;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -11,20 +13,14 @@ import static org.springframework.http.HttpStatus.OK;
 public class HealthController {
 
     @RequestMapping(value = "/health", method = RequestMethod.GET)
-    @ApiOperation(value = "Возвращает статус текущего приложения",
-            notes = "В результате возвращается  {\"status\": \"OK\"} "
-    )
     @ResponseStatus(OK)
-    public ResponseEntity<HealthResult> getStatus(){
+    public ResponseEntity<HealthResult> getStatus() {
         return ResponseEntity.ok(new HealthResult());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ApiOperation(value = "Возвращает статус от корня",
-            notes = "В результате возвращается  {\"status\": \"Root-OK\"} "
-    )
     @ResponseStatus(OK)
-    public ResponseEntity<HealthResult> getStatusFromRoot(){
+    public ResponseEntity<HealthResult> getStatusFromRoot() {
         return ResponseEntity.ok(new HealthResult("Root-OK"));
     }
 }

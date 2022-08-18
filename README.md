@@ -8,3 +8,6 @@
 | /web-app        | веб-сервис для ДЗ|
 | /kubernetes     | содержит все ДЗ по теме кубернетес|
 | /kubernetes/dz1 | ДЗ по первой теме|
+
+## Swagger 3
+1. http://localhost:8080/swagger-ui/index.html
