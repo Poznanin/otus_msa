@@ -1,7 +1,6 @@
 package arch.homework.webapp.service;
 
 import arch.homework.webapp.controller.dto.UserDto;
-import arch.homework.webapp.dao.entity.User;
 import lombok.NonNull;
 
 import java.util.List;
