@@ -1,0 +1,40 @@
+
+server:
+  port: ${OTUS_MSA_DZ_SERVER_PORT:8000}
+
+# Spring
+spring:
+  application:
+    name: "DZ Service"
+  datasource:
+    url: ${OTUS_MSA_DZ_DB_URL:jdbc:postgresql://localhost:5432/otus_msa_dz}
+    username: ${OTUS_MSA_DZ_DB_USER:postgres}
+    password: ${OTUS_MSA_DZ_DB_USER_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: ${OTUS_MSA_DZ_MAX_FILE_SIZE:2MB}
+      max-request-size: ${OTUS_MSA_DZ_MAX_REQUEST_SIZE:2MB}
+  jackson:
+    deserialization:
+      ACCEPT_FLOAT_AS_INT: false
+  flyway:
+    locations: classpath:db/migration
+# OpenAPI
+springdoc:
+  api-docs:
+    path: /openapi
+  show-actuator: true
+  swagger-ui:
+    path: swagger-ui.html
+    disable-swagger-default-url: true
+    displayOperationId: true
+    displayRequestDuration: true
+
