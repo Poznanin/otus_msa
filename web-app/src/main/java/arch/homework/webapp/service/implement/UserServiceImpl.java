@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserService selfInject;
 
+
     public UserServiceImpl(
             @NonNull final UserRepository userRepository,
             @NonNull @Lazy final UserService userService) {
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public @NonNull UserDto getUserByIs(@NonNull UUID idUser) {
+    public @NonNull UserDto getUserById(@NonNull UUID idUser) {
         return UserDtoMapper.INSTANCE.userToUserDto(userRepository.findById(idUser).get());
     }
 
@@ -54,7 +55,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public @NonNull List<UserDto> getUserList() {
 
-       return userRepository.findAll().parallelStream()
+        return userRepository.findAll().parallelStream()
                 .map(u -> UserDtoMapper.INSTANCE.userToUserDto(u))
                 .toList();
     }

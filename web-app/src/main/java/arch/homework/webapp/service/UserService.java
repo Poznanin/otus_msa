@@ -15,7 +15,7 @@ public interface UserService {
     public UserDto updateUser(@NonNull final UserDto userDto);
 
     @NonNull
-    public UserDto getUserByIs(@NonNull final UUID idUser);
+    public UserDto getUserById(@NonNull final UUID idUser);
 
 
     public void deleteUserByIs(@NonNull final UUID idUser);
