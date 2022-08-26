@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - name: web-app
+          image: poznaninlp/otus_homework:1.2.4
+          ports:
+            - name: web
+              containerPort: 8000
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          env:
+            - name: OTUS_MSA_DZ_SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: OTUS_MSA_DZ_SERVER_PORT
+            - name: OTUS_MSA_DZ_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: OTUS_MSA_DZ_DB_URL
+            - name: OTUS_MSA_DZ_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: OTUS_MSA_DZ_DB_USER
+            - name: OTUS_MSA_DZ_DB_USER_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: OTUS_MSA_DZ_DB_USER_PASSWORD
