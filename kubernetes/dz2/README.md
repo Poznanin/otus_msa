@@ -58,14 +58,17 @@ Postman коллекция, в которой будут представлен�
 ```sh
 kubectl create namespace dz2
 ```
-
-Поднимаем postgres
-```sh
-kubectl apply -f postgres.yaml -n dz2
-```
 Создаем configmap с настройками
 ```sh
 kubectl apply -f web_app_config.yaml -n dz2
+```
+Создаем secret с настройками
+```sh
+kubectl apply -f web_app_secret.yaml -n dz2
+```
+Поднимаем postgres
+```sh
+kubectl apply -f postgres.yaml -n dz2
 ```
 Создаем deployment с сервисом
 ```sh

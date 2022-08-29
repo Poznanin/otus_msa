@@ -43,11 +43,11 @@ spec:
                   key: OTUS_MSA_DZ_DB_URL
             - name: OTUS_MSA_DZ_DB_USER
               valueFrom:
-                configMapKeyRef:
-                  name: web-app-config
+                secretKeyRef:
+                  name: web-app-secret
                   key: OTUS_MSA_DZ_DB_USER
             - name: OTUS_MSA_DZ_DB_USER_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: web-app-config
+                secretKeyRef:
+                  name: web-app-secret
                   key: OTUS_MSA_DZ_DB_USER_PASSWORD
