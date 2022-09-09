@@ -87,5 +87,21 @@ kubectl apply -f ingress.yaml -n dz2
 ```sh
 kubectl delete namespace dz2
 ```
+## установка и работа с помощтщью HELM
+Если приложение уже было установлено через манифесты, удалите его через удаление namespace
+
+Команда для проверки итоговых Helm скриптов
+```sh
+helm install web-app ./web-app-chart --dry-run
+```
+Команда для установки
+```sh
+helm install web-app ./web-app-chart
+```
+
+Команда для удаления
+```sh
+helm uninstall web-app
+```
 
 http://arch.homework/otusapp/poznanin/swagger-ui/index.html
