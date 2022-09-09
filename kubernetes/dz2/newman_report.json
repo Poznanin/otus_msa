@@ -1,0 +1,1621 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "9511881b-6df0-426b-8713-b8fb008d27fc",
+      "exporter_id": "22832992"
+    },
+    "item": [
+      {
+        "id": "cef7a3a4-bafd-4922-b6f4-f1afda66b89f",
+        "name": "Get Users",
+        "request": {
+          "url": {
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              ""
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": []
+      },
+      {
+        "id": "ed299d9c-e40b-4e3c-9fe5-edbe7da012a5",
+        "name": "Create User",
+        "request": {
+          "url": {
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              ""
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": []
+      },
+      {
+        "id": "d9149def-dc64-49d1-92a7-8117b15dc5a9",
+        "name": "Update User",
+        "request": {
+          "url": {
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр 2\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": [],
+        "event": []
+      },
+      {
+        "id": "70722e12-bf3b-4aa9-aec3-0ff8d0485da1",
+        "name": "Get User",
+        "request": {
+          "url": {
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": []
+      },
+      {
+        "id": "975feb09-f5da-4b2a-9cc0-4f9c1844c0bc",
+        "name": "Delete User",
+        "request": {
+          "url": {
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": []
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "9511881b-6df0-426b-8713-b8fb008d27fc",
+      "name": "dz2",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    }
+  },
+  "environment": {
+    "id": "660403c1-a3c1-4448-a620-1527bbc15ef9",
+    "values": []
+  },
+  "globals": {
+    "id": "63b51287-30ac-4483-8ad5-40709c26d8c7",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 5,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 5,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 5,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 5,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 36,
+      "responseMin": 16,
+      "responseMax": 86,
+      "responseSd": 25.635912310662945,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1662709438572,
+      "completed": 1662709439186
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 5,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "5f334e62-b527-4ed6-97c9-b691b4ec7433",
+          "httpRequestId": "e65ea429-d352-48de-94f8-036f162e0eea"
+        },
+        "item": {
+          "id": "cef7a3a4-bafd-4922-b6f4-f1afda66b89f",
+          "name": "Get Users",
+          "request": {
+            "url": {
+              "path": [
+                "otusapp",
+                "poznanin",
+                "api",
+                "v1",
+                "user",
+                ""
+              ],
+              "host": [
+                "arch",
+                "homework"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              ""
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.29.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "f7ece6ab-794f-43f9-8f9f-4c2cb442bcbc",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "arch.homework",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "1550de8f-e3aa-4aa5-be62-919d4bd2fccf",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 09 Sep 2022 07:43:58 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              34,
+              102,
+              54,
+              102,
+              55,
+              98,
+              54,
+              51,
+              100,
+              45,
+              102,
+              48,
+              97,
+              55,
+              45,
+              52,
+              50,
+              50,
+              48,
+              45,
+              57,
+              101,
+              53,
+              52,
+              45,
+              57,
+              97,
+              101,
+              56,
+              101,
+              101,
+              48,
+              54,
+              97,
+              99,
+              56,
+              53,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              152,
+              208,
+              178,
+              208,
+              176,
+              208,
+              189,
+              34,
+              44,
+              34,
+              102,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              152,
+              208,
+              178,
+              208,
+              176,
+              208,
+              189,
+              208,
+              190,
+              208,
+              178,
+              208,
+              184,
+              209,
+              135,
+              34,
+              44,
+              34,
+              108,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              152,
+              208,
+              178,
+              208,
+              176,
+              208,
+              189,
+              208,
+              190,
+              208,
+              178,
+              34,
+              44,
+              34,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              105,
+              105,
+              46,
+              105,
+              118,
+              97,
+              110,
+              111,
+              118,
+              64,
+              97,
+              114,
+              99,
+              104,
+              46,
+              104,
+              111,
+              109,
+              101,
+              119,
+              111,
+              114,
+              107,
+              34,
+              44,
+              34,
+              112,
+              104,
+              111,
+              110,
+              101,
+              34,
+              58,
+              34,
+              43,
+              55,
+              57,
+              48,
+              51,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              34,
+              125,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 86,
+          "responseSize": 178
+        },
+        "id": "cef7a3a4-bafd-4922-b6f4-f1afda66b89f"
+      },
+      {
+        "cursor": {
+          "ref": "7cdfc0e2-97e5-47c4-a3cb-da0b5ea76798",
+          "length": 5,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "152b7647-7d19-446a-8eb3-3d21c712c684"
+        },
+        "item": {
+          "id": "ed299d9c-e40b-4e3c-9fe5-edbe7da012a5",
+          "name": "Create User",
+          "request": {
+            "url": {
+              "path": [
+                "otusapp",
+                "poznanin",
+                "api",
+                "v1",
+                "user",
+                ""
+              ],
+              "host": [
+                "arch",
+                "homework"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              ""
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "system": true
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.29.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "aa2f9c2c-f1a6-4622-bb3b-eaf38635abf5",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "arch.homework",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "208",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "fae4a20f-ea1f-4f22-932b-460a36175d15",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 09 Sep 2022 07:43:58 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              34,
+              100,
+              52,
+              54,
+              102,
+              97,
+              97,
+              56,
+              54,
+              45,
+              98,
+              56,
+              49,
+              54,
+              45,
+              52,
+              99,
+              53,
+              48,
+              45,
+              56,
+              50,
+              99,
+              102,
+              45,
+              55,
+              98,
+              50,
+              53,
+              100,
+              52,
+              56,
+              99,
+              97,
+              57,
+              102,
+              54,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              34,
+              44,
+              34,
+              102,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              208,
+              190,
+              208,
+              178,
+              208,
+              184,
+              209,
+              135,
+              34,
+              44,
+              34,
+              108,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              208,
+              190,
+              208,
+              178,
+              34,
+              44,
+              34,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              112,
+              112,
+              46,
+              112,
+              101,
+              116,
+              114,
+              111,
+              118,
+              64,
+              97,
+              114,
+              99,
+              104,
+              46,
+              104,
+              111,
+              109,
+              101,
+              119,
+              111,
+              114,
+              107,
+              34,
+              44,
+              34,
+              112,
+              104,
+              111,
+              110,
+              101,
+              34,
+              58,
+              34,
+              43,
+              55,
+              57,
+              57,
+              57,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 32,
+          "responseSize": 176
+        },
+        "id": "ed299d9c-e40b-4e3c-9fe5-edbe7da012a5"
+      },
+      {
+        "cursor": {
+          "ref": "3018f740-94d8-4386-9f4e-a0af5fd6ac8a",
+          "length": 5,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "d5adf9d8-9b52-479a-bb12-81214fe38854"
+        },
+        "item": {
+          "id": "d9149def-dc64-49d1-92a7-8117b15dc5a9",
+          "name": "Update User",
+          "request": {
+            "url": {
+              "path": [
+                "otusapp",
+                "poznanin",
+                "api",
+                "v1",
+                "user",
+                "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+              ],
+              "host": [
+                "arch",
+                "homework"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр 2\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "system": true
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.29.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "7f760dde-9150-469b-aa8b-cb84fa958855",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "arch.homework",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "210",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр 2\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          }
+        },
+        "response": {
+          "id": "4fff1e9b-2aa0-4364-bcff-eef84825dabc",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 09 Sep 2022 07:43:58 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              34,
+              100,
+              52,
+              54,
+              102,
+              97,
+              97,
+              56,
+              54,
+              45,
+              98,
+              56,
+              49,
+              54,
+              45,
+              52,
+              99,
+              53,
+              48,
+              45,
+              56,
+              50,
+              99,
+              102,
+              45,
+              55,
+              98,
+              50,
+              53,
+              100,
+              52,
+              56,
+              99,
+              97,
+              57,
+              102,
+              54,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              32,
+              50,
+              34,
+              44,
+              34,
+              102,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              208,
+              190,
+              208,
+              178,
+              208,
+              184,
+              209,
+              135,
+              34,
+              44,
+              34,
+              108,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              208,
+              190,
+              208,
+              178,
+              34,
+              44,
+              34,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              112,
+              112,
+              46,
+              112,
+              101,
+              116,
+              114,
+              111,
+              118,
+              64,
+              97,
+              114,
+              99,
+              104,
+              46,
+              104,
+              111,
+              109,
+              101,
+              119,
+              111,
+              114,
+              107,
+              34,
+              44,
+              34,
+              112,
+              104,
+              111,
+              110,
+              101,
+              34,
+              58,
+              34,
+              43,
+              55,
+              57,
+              57,
+              57,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 19,
+          "responseSize": 178
+        },
+        "id": "d9149def-dc64-49d1-92a7-8117b15dc5a9"
+      },
+      {
+        "cursor": {
+          "ref": "fee7b7ae-d590-42da-ad94-6ea688699acb",
+          "length": 5,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "f190be7b-d631-4b99-a64d-6ecce4690ac4"
+        },
+        "item": {
+          "id": "70722e12-bf3b-4aa9-aec3-0ff8d0485da1",
+          "name": "Get User",
+          "request": {
+            "url": {
+              "path": [
+                "otusapp",
+                "poznanin",
+                "api",
+                "v1",
+                "user",
+                "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+              ],
+              "host": [
+                "arch",
+                "homework"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.29.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "e49d49d2-fe2d-4b0e-9996-eba9ed939a7c",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "arch.homework",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "57143732-b210-4092-8051-4da4c2499c9c",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 09 Sep 2022 07:43:59 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              34,
+              100,
+              52,
+              54,
+              102,
+              97,
+              97,
+              56,
+              54,
+              45,
+              98,
+              56,
+              49,
+              54,
+              45,
+              52,
+              99,
+              53,
+              48,
+              45,
+              56,
+              50,
+              99,
+              102,
+              45,
+              55,
+              98,
+              50,
+              53,
+              100,
+              52,
+              56,
+              99,
+              97,
+              57,
+              102,
+              54,
+              34,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              32,
+              50,
+              34,
+              44,
+              34,
+              102,
+              105,
+              114,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              208,
+              190,
+              208,
+              178,
+              208,
+              184,
+              209,
+              135,
+              34,
+              44,
+              34,
+              108,
+              97,
+              115,
+              116,
+              78,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              208,
+              159,
+              208,
+              181,
+              209,
+              130,
+              209,
+              128,
+              208,
+              190,
+              208,
+              178,
+              34,
+              44,
+              34,
+              109,
+              97,
+              105,
+              108,
+              34,
+              58,
+              34,
+              112,
+              112,
+              46,
+              112,
+              101,
+              116,
+              114,
+              111,
+              118,
+              64,
+              97,
+              114,
+              99,
+              104,
+              46,
+              104,
+              111,
+              109,
+              101,
+              119,
+              111,
+              114,
+              107,
+              34,
+              44,
+              34,
+              112,
+              104,
+              111,
+              110,
+              101,
+              34,
+              58,
+              34,
+              43,
+              55,
+              57,
+              57,
+              57,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              49,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 16,
+          "responseSize": 178
+        },
+        "id": "70722e12-bf3b-4aa9-aec3-0ff8d0485da1"
+      },
+      {
+        "cursor": {
+          "ref": "da2243ed-4837-4266-9ae7-a6baa902db60",
+          "length": 5,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "7cb038e3-c31c-4f8b-b595-37dcf55de01e"
+        },
+        "item": {
+          "id": "975feb09-f5da-4b2a-9cc0-4f9c1844c0bc",
+          "name": "Delete User",
+          "request": {
+            "url": {
+              "path": [
+                "otusapp",
+                "poznanin",
+                "api",
+                "v1",
+                "user",
+                "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+              ],
+              "host": [
+                "arch",
+                "homework"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": []
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "path": [
+              "otusapp",
+              "poznanin",
+              "api",
+              "v1",
+              "user",
+              "d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+            ],
+            "host": [
+              "arch",
+              "homework"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.29.0",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "1c60dde2-919b-4c07-9c9b-ae794f480a8c",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "arch.homework",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "2fde604d-f989-4b47-845a-bb9307568492",
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Fri, 09 Sep 2022 07:43:59 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": []
+          },
+          "cookie": [],
+          "responseTime": 27,
+          "responseSize": 0
+        },
+        "id": "975feb09-f5da-4b2a-9cc0-4f9c1844c0bc"
+      }
+    ],
+    "transfers": {
+      "responseTotal": 710
+    },
+    "failures": [],
+    "error": null
+  }
+}
