@@ -12,3 +12,7 @@
 
 ## Swagger 3
 1. http://localhost:8080/swagger-ui/index.html
+\
+
+## Prometheus
+1. http://localhost:8080/actuator/prometheus
