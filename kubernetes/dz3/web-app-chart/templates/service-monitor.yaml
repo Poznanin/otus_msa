@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: web-app-monitor
+  labels:
+    app: web-app-monitor
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: stack
+    app.kubernetes.io/part-of: kube-prometheus-stack
+    release: stack
+    #helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+spec:
+  endpoints:
+    - port: web
+      interval: 60s
+      path: /actuator/prometheus
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: web-app
+  namespaceSelector:
+    any: true
