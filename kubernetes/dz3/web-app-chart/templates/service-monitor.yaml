@@ -12,7 +12,7 @@ metadata:
 spec:
   endpoints:
     - port: web
-      interval: 60s
+      interval: 15s
       path: /actuator/prometheus
   selector:
     matchLabels:
