@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "3e872bb5-b144-41f1-814c-f62be3c3c0e3",
+		"name": "dz3 load testing select",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22832992"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/otusapp/poznanin/api/v1/user/",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"otusapp",
+						"poznanin",
+						"api",
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "arch.homework/otusapp/poznanin/api/v1/user/d46faa86-b816-4c50-82cf-7b25d48ca9f6",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"path": [
+						"otusapp",
+						"poznanin",
+						"api",
+						"v1",
+						"user",
+						"d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
