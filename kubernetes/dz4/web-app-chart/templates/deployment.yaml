@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "web-app-chart.fullname" . }}
+  labels:
+    {{- include "web-app-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "web-app-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "web-app-chart.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              port: 8000
+              path: /health
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          env:
+            - name: OTUS_MSA_DZ_SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: OTUS_MSA_DZ_SERVER_PORT
+            - name: OTUS_MSA_DZ_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: web-app-config
+                  key: OTUS_MSA_DZ_DB_URL
+            - name: OTUS_MSA_DZ_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: web-app-secret
+                  key: OTUS_MSA_DZ_DB_USER
+            - name: OTUS_MSA_DZ_DB_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: web-app-secret
+                  key: OTUS_MSA_DZ_DB_USER_PASSWORD
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

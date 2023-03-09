@@ -1,3 +1,6 @@
 /.idea/
 /kubernetes/dz3/libs/
 /prometheus/
+/example/k6/libs/
+/kubernetes/dz3/libs/
+/kubernetes/dz3/libs/shim/

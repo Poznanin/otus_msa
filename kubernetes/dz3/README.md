@@ -82,7 +82,7 @@ helm uninstall web-app
 
 ### Включить мониторинг для ingress
 ```sh
-elm upgrade nginx-ingress-controller-1660578948 nginx-ingress-controller-9.2.27 --set prometheus.create=true --set prometheus.port=9901
+helm upgrade nginx-ingress-controller-1660578948 nginx-ingress-controller-9.2.27 --set prometheus.create=true --set prometheus.port=9901
 ```
 ### Утилита для нагрузки
 Утилита для нагрузки

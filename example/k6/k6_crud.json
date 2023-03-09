@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "2ee63e5c-cbe4-494e-92e7-357bc9ab5030",
+		"name": "k6 example CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22832992"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}api/v1/user/",
+					"host": [
+						"{{BASE_URL}}api"
+					],
+					"path": [
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}api/v1/user/",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}api/v1/user/",
+					"host": [
+						"{{BASE_URL}}api"
+					],
+					"path": [
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}api/v1/user/",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f7\",\r\n  \"name\": \"Петр22\",\r\n  \"firstName\": \"Петрович22\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}api/v1/user/",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"d46faa86-b816-4c50-82cf-7b25d48ca9f6\",\r\n  \"name\": \"Петр 2\",\r\n  \"firstName\": \"Петрович\",\r\n  \"lastName\": \"Петров\",\r\n  \"mail\": \"pp.petrov@arch.homework\",\r\n  \"phone\": \"+79991111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}api/v1/user/d46faa86-b816-4c50-82cf-7b25d48ca9f6",
+					"host": [
+						"{{BASE_URL}}api"
+					],
+					"path": [
+						"v1",
+						"user",
+						"d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}api/v1/user/d46faa86-b816-4c50-82cf-7b25d48ca9f6",
+					"host": [
+						"{{BASE_URL}}api"
+					],
+					"path": [
+						"v1",
+						"user",
+						"d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}api/v1/user/d46faa86-b816-4c50-82cf-7b25d48ca9f6",
+					"host": [
+						"{{BASE_URL}}api"
+					],
+					"path": [
+						"v1",
+						"user",
+						"d46faa86-b816-4c50-82cf-7b25d48ca9f6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8080/",
+			"type": "string"
+		}
+	]
+}

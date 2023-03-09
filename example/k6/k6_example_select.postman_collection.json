@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "96a4fbca-74c3-48e8-b322-183205978b3f",
+		"name": "k6 example select",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22832992"
+	},
+	"item": [
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}api/v1/user/",
+					"host": [
+						"{{BASE_URL}}api"
+					],
+					"path": [
+						"v1",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}api/v1/user/43e3af93-b4da-44c2-9533-9f55734b5b7c",
+					"host": [
+						"{{BASE_URL}}api"
+					],
+					"path": [
+						"v1",
+						"user",
+						"43e3af93-b4da-44c2-9533-9f55734b5b7c"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8080/",
+			"type": "string"
+		}
+	]
+}
