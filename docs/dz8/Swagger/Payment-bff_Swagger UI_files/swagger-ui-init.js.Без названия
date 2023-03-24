@@ -1,0 +1,1936 @@
+
+window.onload = function() {
+  // Build a system
+  var url = window.location.search.match(/url=([^&]+)/);
+  if (url && url.length > 1) {
+    url = decodeURIComponent(url[1]);
+  } else {
+    url = window.location.origin;
+  }
+  var options = {
+  "swaggerDoc": {
+    "openapi": "3.0.1",
+    "info": {
+      "title": "API сервиса payment-bff ",
+      "description": "Реализация api на основе <a href=\"https://wiki.domrf.ru/pages/viewpage.action?pageId=115225974\">Вики</a>",
+      "version": "1.0.0"
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      },
+      "schemas": {
+        "ActuatorResponse": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "UP"
+              ]
+            }
+          }
+        },
+        "FilterReq": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "DRAFT"
+              }
+            },
+            "dateFrom": {
+              "type": "string",
+              "example": "2000-12-31"
+            },
+            "dateTo": {
+              "type": "string",
+              "example": "2100-12-31"
+            },
+            "amountFrom": {
+              "type": "number",
+              "example": 0
+            },
+            "amountTo": {
+              "type": "number",
+              "example": 1000000000
+            },
+            "recipientSearch": {
+              "type": "string"
+            },
+            "payerSearch": {
+              "type": "string"
+            },
+            "number": {
+              "type": "string"
+            },
+            "paymentPurposeSearch": {
+              "type": "string"
+            },
+            "kbkSearch": {
+              "type": "string"
+            }
+          }
+        },
+        "BicArr": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "bic": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "FilterRes": {
+          "type": "object",
+          "properties": {
+            "payerBanks": {
+              "$ref": "#/components/schemas/BicArr"
+            },
+            "recipientBanks": {
+              "$ref": "#/components/schemas/BicArr"
+            },
+            "payerAccounts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "recipientAccounts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Payments": {
+          "type": "object",
+          "properties": {
+            "payentOrders": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/PayentOrder"
+              }
+            }
+          }
+        },
+        "PayentOrders": {
+          "type": "object",
+          "properties": {
+            "avgCount": {
+              "type": "number"
+            },
+            "payentOrders": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/PayentOrder"
+              }
+            }
+          }
+        },
+        "Filter": {
+          "type": "object",
+          "properties": {
+            "pageNumber": {
+              "type": "number",
+              "example": 1
+            },
+            "pageSize": {
+              "type": "number",
+              "example": 25,
+              "desciption": "> 1"
+            },
+            "payerAccounts": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": null
+              }
+            },
+            "sortDescending": {
+              "type": "boolean"
+            },
+            "sortFields": {
+              "type": "string",
+              "example": "DATE",
+              "desciption": "STATUS | NUMBER | AMOUNT | DATE | RECIPIENT_NAME | RECIPIENT_ACCOUNT | PAYER_NAME"
+            }
+          }
+        },
+        "IdsArray": {
+          "type": "object",
+          "properties": {
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "PaymentIdsSearchRequest": {
+          "type": "object",
+          "properties": {
+            "dateFrom": {
+              "type": "string"
+            },
+            "dateTo": {
+              "type": "string"
+            },
+            "amountFrom": {
+              "type": "string"
+            },
+            "amountTo": {
+              "type": "string"
+            },
+            "payerSearch": {
+              "type": "string"
+            },
+            "recipientSearch": {
+              "type": "string"
+            },
+            "payerAccounts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "recipientAccounts": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "number": {
+              "type": "string"
+            },
+            "paymentPurposeSearch": {
+              "type": "string"
+            },
+            "recipientBics": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "kbkSearch": {
+              "type": "string"
+            },
+            "funds": {
+              "type": "string"
+            },
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "PaymentIdsSearchResponse": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "paymentDocumentId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "PaymentSearchRequest": {
+          "type": "object",
+          "properties": {
+            "pageSize": {
+              "type": "number"
+            },
+            "pageNumber": {
+              "type": "number"
+            },
+            "sortField": {
+              "type": "string"
+            },
+            "sortDescending": {
+              "type": "boolean"
+            },
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Dictionary": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "Period": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "taxPeriodCode": {
+              "type": "string"
+            },
+            "businessCode": {
+              "type": "string"
+            }
+          }
+        },
+        "Dictionaries": {
+          "type": "object",
+          "properties": {
+            "vat-types": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Dictionary"
+              }
+            },
+            "tax-period": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Dictionary"
+              }
+            },
+            "tax-period-indicator": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Dictionary"
+              }
+            },
+            "period": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Period"
+              }
+            },
+            "payment-kinds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Dictionary"
+              }
+            },
+            "payment-causes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Dictionary"
+              }
+            },
+            "payer-statuses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Dictionary"
+              }
+            },
+            "income-kind": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Dictionary"
+              }
+            }
+          }
+        },
+        "PayentOrder": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "created": {
+              "type": "string"
+            },
+            "changed": {
+              "type": "string"
+            },
+            "deleted": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "number": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "paymentPurpose": {
+              "type": "string"
+            },
+            "operationType": {
+              "type": "string"
+            },
+            "paymentKind": {
+              "type": "string"
+            },
+            "incomeKindCode": {
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "payerStatus": {
+              "type": "string"
+            },
+            "kbk": {
+              "type": "string"
+            },
+            "oktmo": {
+              "type": "string"
+            },
+            "paymentCause": {
+              "type": "string"
+            },
+            "taxPeriodIndicator": {
+              "type": "string"
+            },
+            "customsCode": {
+              "type": "string"
+            },
+            "taxPeriod": {
+              "type": "string"
+            },
+            "taxPeriodDate": {
+              "type": "string"
+            },
+            "taxPeriodYear": {
+              "type": "number"
+            },
+            "period": {
+              "type": "string"
+            },
+            "causeDocumentNumber": {
+              "type": "string"
+            },
+            "causeDocumentDate": {
+              "type": "string"
+            },
+            "causeDateNotSpecifiedFlag": {
+              "type": "boolean"
+            },
+            "paymentPriority": {
+              "type": "string"
+            },
+            "creditFundsFlag": {
+              "type": "boolean"
+            },
+            "vatPaymentType": {
+              "type": "string"
+            },
+            "payerInn": {
+              "type": "string"
+            },
+            "payerKpp": {
+              "type": "string"
+            },
+            "payerName": {
+              "type": "string"
+            },
+            "payerAccount": {
+              "type": "string"
+            },
+            "payerAccountId": {
+              "type": "string"
+            },
+            "payerBank": {
+              "type": "string"
+            },
+            "payerCorrespondentAccount": {
+              "type": "string"
+            },
+            "payerBic": {
+              "type": "string"
+            },
+            "payerType": {
+              "type": "string"
+            },
+            "recipientInn": {
+              "type": "string"
+            },
+            "recipientKpp": {
+              "type": "string"
+            },
+            "recipientName": {
+              "type": "string"
+            },
+            "recipientAccount": {
+              "type": "string"
+            },
+            "recipientAccountId": {
+              "type": "string"
+            },
+            "recipientBank": {
+              "type": "string"
+            },
+            "recipientCorrespondentAccount": {
+              "type": "string"
+            },
+            "recipientBic": {
+              "type": "string"
+            },
+            "recipientType": {
+              "type": "string"
+            }
+          }
+        },
+        "BackToDraftRequest": {
+          "type": "object",
+          "properties": {
+            "documentType": {
+              "type": "string"
+            },
+            "legalId": {
+              "type": "string"
+            },
+            "docId": {
+              "type": "string"
+            },
+            "docStatus": {
+              "type": "string"
+            },
+            "analiticRequired": {
+              "type": "boolean"
+            }
+          }
+        },
+        "OrderExtendedData": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "created": {
+              "type": "string"
+            },
+            "changed": {
+              "type": "string"
+            },
+            "deleted": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "number": {
+              "type": "string"
+            },
+            "date": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "paymentPurpose": {
+              "type": "string"
+            },
+            "operationType": {
+              "type": "string"
+            },
+            "paymentKind": {
+              "type": "string"
+            },
+            "incomeKindCode": {
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "payerStatus": {
+              "type": "string"
+            },
+            "kbk": {
+              "type": "string"
+            },
+            "oktmo": {
+              "type": "string"
+            },
+            "paymentCause": {
+              "type": "string"
+            },
+            "taxPeriodIndicator": {
+              "type": "string"
+            },
+            "customsCode": {
+              "type": "string"
+            },
+            "taxPeriod": {
+              "type": "string"
+            },
+            "taxPeriodDate": {
+              "type": "string"
+            },
+            "taxPeriodYear": {
+              "type": "string"
+            },
+            "period": {
+              "type": "string"
+            },
+            "causeDocumentNumber": {
+              "type": "string"
+            },
+            "causeDocumentDate": {
+              "type": "string"
+            },
+            "causeDateNotSpecifiedFlag": {
+              "type": "boolean"
+            },
+            "paymentPriority": {
+              "type": "string"
+            },
+            "creditFundsFlag": {
+              "type": "boolean"
+            },
+            "vatPaymentType": {
+              "type": "string"
+            },
+            "payerInn": {
+              "type": "string"
+            },
+            "payerKpp": {
+              "type": "string"
+            },
+            "payerName": {
+              "type": "string"
+            },
+            "payerId": {
+              "type": "string"
+            },
+            "payerAccount": {
+              "type": "string"
+            },
+            "payerAccountId": {
+              "type": "string"
+            },
+            "payerBank": {
+              "type": "string"
+            },
+            "payerCorrespondentAccount": {
+              "type": "string"
+            },
+            "payerBic": {
+              "type": "string"
+            },
+            "payerType": {
+              "type": "string"
+            },
+            "recipientInn": {
+              "type": "string"
+            },
+            "recipientKpp": {
+              "type": "string"
+            },
+            "recipientName": {
+              "type": "string"
+            },
+            "recipientAccount": {
+              "type": "string"
+            },
+            "recipientAccountId": {
+              "type": "string"
+            },
+            "recipientBank": {
+              "type": "string"
+            },
+            "recipientCorrespondentAccount": {
+              "type": "string"
+            },
+            "recipientBic": {
+              "type": "string"
+            },
+            "recipientType": {
+              "type": "string"
+            },
+            "obcAccountFlag": {
+              "type": "boolean"
+            },
+            "comments": {
+              "type": "string"
+            },
+            "processingDateTime": {
+              "type": "string"
+            },
+            "revoke": {
+              "type": "object",
+              "properties": {
+                "individualId": {
+                  "type": "string"
+                },
+                "authorName": {
+                  "type": "string"
+                },
+                "changed": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "signatures": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Signature"
+                  }
+                }
+              }
+            },
+            "signatures": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Signature"
+              }
+            }
+          }
+        },
+        "Signature": {
+          "type": "object",
+          "properties": {
+            "individualId": {
+              "type": "string"
+            },
+            "signTypeCode": {
+              "type": "string"
+            },
+            "certificateNumber": {
+              "type": "number"
+            },
+            "cryptographyType": {
+              "type": "string"
+            },
+            "signDateTime": {
+              "type": "string"
+            },
+            "requestId": {
+              "type": "string"
+            },
+            "docType": {
+              "type": "string"
+            },
+            "signerName": {
+              "type": "string"
+            }
+          }
+        },
+        "PaymentEvent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "body": {
+                "type": "object",
+                "properties": {
+                  "comments": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "signerName": {
+                    "type": "string"
+                  },
+                  "signDateTime": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "RevokeForSigningRequest": {
+          "type": "object",
+          "properties": {
+            "legalId": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "RevokeForSigningResult": {
+          "type": "object",
+          "properties": {
+            "revokeId": {
+              "type": "string"
+            }
+          }
+        },
+        "RecallCheck": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "number"
+            },
+            "message": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string"
+            }
+          }
+        },
+        "SignPaymentsRequest": {
+          "type": "object",
+          "properties": {
+            "documents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SignPayment"
+              }
+            }
+          }
+        },
+        "SignPaymentsResponse": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/SignedRoad"
+          }
+        },
+        "SignPayment": {
+          "type": "object",
+          "properties": {
+            "documentType": {
+              "type": "string",
+              "example": "PAYMENT_ORDER"
+            },
+            "legalId": {
+              "type": "string"
+            },
+            "docId": {
+              "type": "string"
+            },
+            "docStatus": {
+              "type": "string",
+              "example": "DRAFT"
+            },
+            "analiticRequired": {
+              "type": "boolean"
+            }
+          }
+        },
+        "SignedRoad": {
+          "type": "object",
+          "properties": {
+            "docId": {
+              "type": "string"
+            },
+            "roadResult": {
+              "type": "number"
+            },
+            "message": {
+              "type": "string"
+            },
+            "timeStamp": {
+              "type": "string"
+            }
+          }
+        },
+        "SignCheck": {
+          "type": "object",
+          "properties": {
+            "docId": {
+              "type": "string"
+            },
+            "documentType": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "checkResult": {
+              "type": "number"
+            }
+          }
+        },
+        "SignCheckResponse": {
+          "type": "object",
+          "properties": {
+            "checkResults": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SignCheck"
+              }
+            }
+          }
+        },
+        "SignResult": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "timeStamp": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "signSendResult": {
+              "type": "number"
+            }
+          }
+        },
+        "SignResultResponse": {
+          "type": "object",
+          "properties": {
+            "signingResults": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SignResult"
+              }
+            }
+          }
+        },
+        "SumAmounsResponse": {
+          "type": "object",
+          "properties": {
+            "sumAmounts": {
+              "type": "number"
+            }
+          }
+        },
+        "PaymentsCreditFundsFlagRequest": {
+          "type": "object",
+          "properties": {
+            "documents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "creditFundsFlag": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PaymentsCreditFundsFlagResponse": {
+          "type": "object",
+          "properties": {
+            "documents": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "errorMessage": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "SuccessUpload": {
+          "type": "object",
+          "properties": {
+            "importFileId": {
+              "type": "string"
+            },
+            "size": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "count": {
+              "type": "number"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "UploadDelete": {
+          "type": "object",
+          "properties": {
+            "importFileIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "paths": {
+      "/actuator/health": {
+        "get": {
+          "summary": "GET-метод, для контроля запуска сервиса в Kubernetes.",
+          "tags": [
+            "ActuatorHealth"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": null,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ActuatorResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/filters": {
+        "post": {
+          "summary": "Получение фильтров",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Фильтры"
+          ],
+          "requestBody": {
+            "required": true,
+            "description": "Фильтр",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilterReq"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает отфильтрованные данные",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/FilterRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-dashboard": {
+        "post": {
+          "summary": "Поиск платежных поручений",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Dashboard"
+          ],
+          "requestBody": {
+            "required": true,
+            "description": "Фильтр",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Filter"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает отфильтрованные данные",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PayentOrders"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Удалене списка ПП",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Dashboard"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdsArray"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "204": {
+              "description": "Успешное удаление"
+            }
+          }
+        }
+      },
+      "/payment-dashboard/copy": {
+        "post": {
+          "summary": "Копирование списка пп > 1",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Dashboard"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdsArray"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "204": {
+              "description": "Успешное копирование"
+            }
+          }
+        }
+      },
+      "/payment-dashboard/{id}": {
+        "post": {
+          "summary": "Копирование одного ПП",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Dashboard"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Успешное копирование возвращает ПП",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PayentOrder"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payments/ids/search": {
+        "post": {
+          "summary": "Поиск идентификаторов платежных поручений без учета пагинации и сортировки https://wiki.domrf.ru/pages/viewpage.action?pageId=165237181",
+          "tags": [
+            "Dashboard"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentIdsSearchRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает отфильтрованные данные",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PaymentIdsSearchResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payments/search": {
+        "post": {
+          "summary": "Поиск платежей и платежных поручений https://wiki.domrf.ru/pages/viewpage.action?pageId=114202249",
+          "tags": [
+            "Dashboard"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentSearchRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает отфильтрованные данные",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Payments"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/dictionaries": {
+        "get": {
+          "summary": "Возвращает словари",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Dictionaries"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "текущие словари полученные с бэка",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Dictionaries"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-order": {
+        "get": {
+          "summary": "Запрос платежного покучения",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "PaymentOrder"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает платежное поручение данные",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PayentOrder"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Редактирование ПП",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "PaymentOrder"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayentOrders"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает платежное поручение данные",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PayentOrder"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/for-signing": {
+        "post": {
+          "summary": "Смена статуса документа с \"черновика\" на \"на подписании\"",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Sign"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignPaymentsRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает массив подписанных дорог для успешных или ошибок backendError",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SignPaymentsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/bff-back-to-draft": {
+        "post": {
+          "summary": "Возвращение документа в статус \"черновик\"",
+          "description": "https://wiki.domrf.ru/pages/viewpage.action?pageId=154023141",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Sign"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BackToDraftRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает массив подписанных дорог для успешных или ошибок backendError",
+              "content": {
+                "application/json": {
+                  "schema": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/check-for-sign": {
+        "post": {
+          "summary": "Проверка прав на подписание документов",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Sign"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignPaymentsRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Проверка произведена",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SignCheckResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/sign": {
+        "post": {
+          "summary": "Документы подписаны",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "Sign"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignPaymentsRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Документы подписаны",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SignResultResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-order/check-for-recall": {
+        "get": {
+          "summary": "Проверка возможности отзыва платежа",
+          "tags": [
+            "Recall"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Проверка произведена",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RecallCheck"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/revoke-for-signing": {
+        "post": {
+          "summary": "Создание отзыва ПП в статусе \"на подписании\"",
+          "tags": [
+            "PaymentOrder"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevokeForSigningRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Успешный ответ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RevokeForSigningResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/amounts/sum": {
+        "get": {
+          "summary": "Получение суммы размеров платежей по номеру счета",
+          "tags": [
+            "PaymentOrder"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "organizationId",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Успешный ответ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SumAmounsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/extended-data/{id}": {
+        "get": {
+          "summary": "Получение расширенных данных ПП по ID",
+          "tags": [
+            "PaymentOrder"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Успешный ответ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/OrderExtendedData"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/events": {
+        "get": {
+          "summary": "Получение событий по документу",
+          "tags": [
+            "PaymentOrder"
+          ],
+          "parameters": [
+            {
+              "name": "paymentDocumentId",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "paymentDocumentType",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Успешный ответ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PaymentEvent"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment-orders/credit-funds-flag": {
+        "put": {
+          "summary": "Групповое обновление полей источник средств и операционный день",
+          "tags": [
+            "PaymentOrder"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentsCreditFundsFlagRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Успешный ответ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PaymentsCreditFundsFlagResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/export-pdf": {
+        "post": {
+          "summary": "Запрос платежного покучения",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "пдф документ"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayentOrders"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает файл или ошибку"
+            }
+          }
+        }
+      },
+      "/payment/upload": {
+        "post": {
+          "summary": "Загрузка платжного поручения",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "PaymentUpload"
+          ],
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "required": true,
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Возвращает информацию о загрузке",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessUpload"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Удаление платежных поручений",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "PaymentUpload"
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadDelete"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "204": {
+              "description": "Успешное удаление"
+            }
+          }
+        }
+      },
+      "/payment/upload/{importFileId}/report": {
+        "get": {
+          "summary": "Отчет по загруженному файлу",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "tags": [
+            "PaymentUpload"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "importFileId",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "produces": [
+            "application/vnd.ms-excel"
+          ],
+          "responses": {
+            "200": {
+              "description": "Успешный отчёт"
+            }
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "ActuatorHealth",
+        "description": "Состояние приложения"
+      },
+      {
+        "name": "Dashboard",
+        "description": "Список платежных поручений"
+      },
+      {
+        "name": "Dictionaries",
+        "description": "Словари"
+      }
+    ]
+  },
+  "customOptions": {
+    "tagsSorter": "alpha",
+    "operationsSorter": (a, b) => {
+    const methods = ['get', 'post', 'put', 'patch', 'head', 'options', 'delete'];
+    return methods.indexOf(a.get('method')) - methods.indexOf(b.get('method'));
+}
+  }
+};
+  url = options.swaggerUrl || url
+  var urls = options.swaggerUrls
+  var customOptions = options.customOptions
+  var spec1 = options.swaggerDoc
+  var swaggerOptions = {
+    spec: spec1,
+    url: url,
+    urls: urls,
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout"
+  }
+  for (var attrname in customOptions) {
+    swaggerOptions[attrname] = customOptions[attrname];
+  }
+  var ui = SwaggerUIBundle(swaggerOptions)
+
+  if (customOptions.oauth) {
+    ui.initOAuth(customOptions.oauth)
+  }
+
+  if (customOptions.authAction) {
+    ui.authActions.authorize(customOptions.authAction)
+  }
+
+  window.ui = ui
+}
